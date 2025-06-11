@@ -1,0 +1,31 @@
+.hero {
+  background-image: url("/public/Herox1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: calc(100vh - 67px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 60px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.text {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  margin-bottom: 40px;
+}
+
+.btn {
+  width: 276px;
+  height: 44px;
+}

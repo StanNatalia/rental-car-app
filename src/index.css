@@ -6,12 +6,12 @@
   --accent-font: var(--font-manrope);
 
   --main-black: #101828;
-  --main-dark-grey: #8e929a;
+  --main-grey: #8e929a;
   --main-light-blue: #3470ff;
   --main-blue: #0b44cd;
   --main-light: #dadde1;
   --main-white-1: #f2f4f7;
-  --main-white-2: #f7f7f7;
+  --main-inputs: #f7f7f7;
   --main-white-3: #ffffff;
 }
 
@@ -54,6 +54,7 @@ body {
   font-weight: 500;
   font-size: 16px;
   font-style: normal;
+  color: var(--main-white-3);
 }
 
 img,
@@ -64,5 +65,17 @@ svg {
 }
 
 button {
+  display: inline-block;
+  background-color: var(--main-light-blue);
   cursor: pointer;
+  color: var(--main-white-3);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover,
+button:focus {
+  background-color: var(--main-blue);
 }
