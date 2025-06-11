@@ -5,6 +5,12 @@ import css from "./List.module.css";
 const List = () => {
   const cars = useSelector((state) => state.cars.items);
 
+  if (!Array.isArray(cars) || cars.length === 0) {
+    return <p>No cars available...</p>;
+  }
+
+  console.log("cars:", cars);
+
   return (
     <ul className={css.list}>
       {cars.map((item) => (

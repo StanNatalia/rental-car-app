@@ -1,0 +1,30 @@
+.wrapper {
+  padding: 84px 120px 124px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  color: var(--main-black);
+  background-color: var(--main-white);
+  border: 1px solid var(--main-blue);
+  width: 156px;
+  height: 44px;
+}
+
+.btn:hover,
+.btn:focus {
+  border: 1px solid var(--main-light-blue);
+  background-color: var(--main-white);
+}
+
+.error {
+  font-size: 30px;
+  color: var(--main-black);
+  margin-top: 40px;
+}

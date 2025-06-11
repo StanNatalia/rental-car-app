@@ -1,6 +1,7 @@
 import { Field, Form, Formik } from "formik";
 import css from "./SearchBar.module.css";
 import Select from "react-select";
+import { customSelectStyles } from "./СommonSelectStyle.js";
 
 const SearchBar = () => {
   return (
@@ -24,7 +25,7 @@ const SearchBar = () => {
             name="brand"
             type="select"
             placeholder="Choose a brand"
-            className={css.input}
+            styles={customSelectStyles}
           />
         </div>
 
@@ -36,7 +37,7 @@ const SearchBar = () => {
             name="price"
             type="select"
             placeholder="Choose a price"
-            className={css.input}
+            styles={customSelectStyles}
           />
         </div>
 

@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import css from "./Item.module.css";
+import { toggleFavorite } from "../../redux/Cars/slice";
 
 const getCityAndCountry = (address) => {
   const parts = address.split(",").map((part) => part.trim());
@@ -18,6 +20,7 @@ const formattedMileage = (mileage) => {
 };
 
 const Item = ({
+  id,
   brand,
   model,
   year,
@@ -28,10 +31,18 @@ const Item = ({
   mileage,
   type,
 }) => {
-  const [liked, setLiked] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const toggleLike = () => {
-    setLiked((like) => !like);
+  const favorites = useSelector((state) => state.cars.favorites);
+  const isFavorite = favorites.includes(id);
+
+  const handleToggleFavorite = () => {
+    dispatch(toggleFavorite(id));
+  };
+
+  const handleClick = () => {
+    navigate(`/car${id}`);
   };
 
   return (
@@ -39,10 +50,17 @@ const Item = ({
       <div className={css.itemWrapper}>
         <div className={css.imageWrapper}>
           <img src={img} alt={`${brand} ${model}`} className={css.img} />
-          <svg width="16" height="15" className={css.icon} onClick={toggleLike}>
+          <svg
+            width="16"
+            height="15"
+            className={css.icon}
+            onClick={handleToggleFavorite}
+          >
             <use
               href={
-                liked ? "/icons.svg#icon-blue-like" : "/icons.svg#icon-like"
+                isFavorite
+                  ? "/icons.svg#icon-blue-like"
+                  : "/icons.svg#icon-like"
               }
             ></use>
           </svg>
@@ -64,7 +82,9 @@ const Item = ({
           <p>{formattedMileage(mileage)} km</p>
         </div>
       </div>
-      <button className={css.btn}>Read More</button>
+      <button className={css.btn} onClick={handleClick}>
+        Read More
+      </button>
     </div>
   );
 };
