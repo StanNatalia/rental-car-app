@@ -42,8 +42,11 @@ const Item = ({
   };
 
   const handleClick = () => {
-    navigate(`/car${id}`);
+    navigate(`/car/${id}`);
   };
+
+  console.log("Card ID:", id);
+  console.log("Item props:", { id, brand, model });
 
   return (
     <div className={css.wrapper}>

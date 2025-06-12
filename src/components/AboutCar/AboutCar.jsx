@@ -1,45 +1,49 @@
 import css from "./AboutCar.module.css";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCar } from "../../redux/Cars/operation";
 
-const AboutCar = ({ car }) => {
-  if (!car) {
-    return <div className={css.error}>Car not found...</div>;
-  }
+const AboutCar = ({ initialData }) => {
+  const { type, mileage, year } = initialData;
 
-  const {
-    brand,
-    model,
-    year,
-    img,
-    rentalPrice,
-    address,
-    rentalCompany,
-    mileage,
-    type,
-  } = car;
+  const { id } = useParams();
+
+  const dispatch = useDispatch();
+
+  const car = useSelector((state) => state.cars.car);
+  const isLoading = useSelector((state) => state.cars.isLoading);
+  const isError = useSelector((state) => state.cars.isError);
+
+  useEffect(() => {
+    dispatch(fetchCar(id));
+  }, [dispatch, id]);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error loading car details</p>;
+  if (!car) return null;
+
   return (
     <div className={css.wrapper}>
-      <div className={css.itemWrapper}>
-        <div className={css.imageWrapper}>
-          <img src={img} alt={`${brand} ${model}`} className={css.img} />
-        </div>
-        <div className={css.wrapperName}>
-          <p className={css.name}>
-            {brand} <span className={css.span}>{model}</span>, {year}
-          </p>
-          <p className={css.name}>${rentalPrice}</p>
-        </div>
-        <div className={css.wrapperInfo}>
-          <p>{address}</p>
-          <span className={css.divider}>|</span>
-          <p>{rentalCompany}</p>
-        </div>
-        <div className={css.wrapperInfo}>
-          <p>{type}</p>
-          <span className={css.divider}>|</span>
-          <p>{mileage} km</p>
-        </div>
-      </div>
-      <button className={css.btn}>Read More</button>
+      <h2>
+        {car.brand} {car.model}
+      </h2>
+      <img src={car.img} alt={car.model} style={{ maxWidth: "640px" }} />
+      <p>
+        <strong>Price:</strong> ${car.rentalPrice}
+      </p>
+      <p>
+        <strong>Type:</strong> {type || car.type}
+      </p>
+      <p>
+        <strong>Year:</strong> {year || car.year}
+      </p>
+      <p>
+        <strong>Mileage:</strong> {mileage || car.mileage} km
+      </p>
+      <p>
+        <strong>Address:</strong> {car.address}
+      </p>
     </div>
   );
 };

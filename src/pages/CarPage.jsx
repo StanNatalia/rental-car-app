@@ -1,21 +1,13 @@
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import AboutCar from "../components/AboutCar/AboutCar";
+import { useLocation } from "react-router-dom";
+import AboutCar from "./../components/AboutCar/AboutCar";
 
 const CarPage = () => {
-  const { carId } = useParams();
-  const cars = useSelector((state) => state.cars.items);
-
-  console.log("carId:", carId);
-  console.log("cars:", cars);
-
-  const car = cars.find((item) => String(item.id) === String(carId));
-
-  console.log("found car:", car);
+  const location = useLocation();
+  const state = location.state || {};
 
   return (
     <div>
-      <AboutCar car={car} />
+      <AboutCar initialData={state} />
     </div>
   );
 };

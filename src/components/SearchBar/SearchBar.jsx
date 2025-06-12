@@ -2,6 +2,9 @@ import { Field, Form, Formik } from "formik";
 import css from "./SearchBar.module.css";
 import Select, { components } from "react-select";
 import { CustomSelectStyles } from "./СustomSelectStyle.js";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBrand } from "../../redux/Cars/operation.js";
+import { useEffect } from "react";
 
 const CustomDropdownIndicator = (props) => {
   const { menuIsOpen } = props.selectProps;
@@ -22,14 +25,19 @@ const CustomDropdownIndicator = (props) => {
   );
 };
 
-const CustomSingleValue = ({ data, ...props }) => (
+const PriceSingleValue = ({ data, ...props }) => (
   <components.SingleValue {...props}>To ${data.label}</components.SingleValue>
 );
 
-const customComponents = {
+const BrandComponents = {
   DropdownIndicator: CustomDropdownIndicator,
   IndicatorSeparator: () => null,
-  SingleValue: CustomSingleValue,
+};
+
+const PriceComponents = {
+  DropdownIndicator: CustomDropdownIndicator,
+  IndicatorSeparator: () => null,
+  SingleValue: PriceSingleValue,
 };
 
 const stylesBrandSelector = {
@@ -43,6 +51,18 @@ const stylesPriceSelector = {
 };
 
 const SearchBar = () => {
+  const brandList = useSelector((state) => state.cars.brand);
+
+  const brandOptions = brandList.map((brand) => ({
+    value: brand,
+    label: brand,
+  }));
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchBrand());
+  }, [dispatch]);
+
   return (
     <Formik
       initialValues={{
@@ -63,9 +83,10 @@ const SearchBar = () => {
             </label>
             <Select
               name="brand"
+              options={brandOptions}
               placeholder="Choose a brand"
               styles={stylesBrandSelector}
-              components={customComponents}
+              components={BrandComponents}
             />
           </div>
 
@@ -77,7 +98,7 @@ const SearchBar = () => {
               name="price"
               placeholder="Choose a price"
               styles={stylesPriceSelector}
-              components={customComponents}
+              components={PriceComponents}
               options={[
                 { value: 30, label: "30" },
                 { value: 40, label: "40" },

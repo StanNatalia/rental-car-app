@@ -17,3 +17,31 @@ export const fetchData = createAsyncThunk(
     }
   }
 );
+
+export const fetchBrand = createAsyncThunk(
+  "brand/fetchBrand",
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        "https://car-rental-api.goit.global/brands"
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchCar = createAsyncThunk(
+  "car/fetchCar",
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `https://car-rental-api.goit.global/cars/${id}`
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
