@@ -12,14 +12,14 @@
   margin-top: 80px;
   color: var(--main-black);
   background-color: var(--main-white);
-  border: 1px solid var(--main-blue);
+  border: 1px solid var(--main-button);
   width: 156px;
   height: 44px;
 }
 
 .btn:hover,
 .btn:focus {
-  border: 1px solid var(--main-light-blue);
+  border: 1px solid var(--main-button-hover);
   background-color: var(--main-white);
 }
 

@@ -38,3 +38,48 @@
   width: 156px;
   height: 44px;
 }
+
+.rangeInputGroup {
+  display: flex;
+  align-items: stretch;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  height: 44px;
+}
+
+.rangeInput {
+  flex: 1;
+  border: none;
+  font-family: var(--font-manrope);
+  background: transparent;
+  outline: none;
+  color: var(--main-black);
+}
+
+.inputWrapper:first-of-type .rangeInput {
+  padding-left: 65px;
+}
+
+.inputWrapper:last-of-type .rangeInput {
+  padding-left: 45px;
+}
+.separator {
+  width: 1px;
+  background-color: #8d929a;
+  align-self: stretch;
+  opacity: 0.4;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputLabel {
+  position: absolute;
+  left: 20px;
+  color: var(--main-black);
+  pointer-events: none;
+  font-family: var(--font-manrope);
+}
