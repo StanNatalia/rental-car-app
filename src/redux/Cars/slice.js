@@ -11,6 +11,12 @@ const initialState = {
   isError: false,
   brand: [],
   car: null,
+  filters: {
+    brand: "",
+    price: null,
+    from: "",
+    to: "",
+  },
 };
 
 const slice = createSlice({
@@ -31,6 +37,9 @@ const slice = createSlice({
       } else {
         state.favorites.push(carId);
       }
+    },
+    setFilters(state, action) {
+      state.filters = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -77,5 +86,6 @@ const slice = createSlice({
   },
 });
 
-export const { resetCars, incrementPage, toggleFavorite } = slice.actions;
+export const { resetCars, incrementPage, toggleFavorite, setFilters } =
+  slice.actions;
 export const carReducer = slice.reducer;

@@ -3,8 +3,9 @@ import css from "./SearchBar.module.css";
 import Select, { components } from "react-select";
 import { CustomSelectStyles } from "./СustomSelectStyle.js";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBrand } from "../../redux/Cars/operation.js";
+import { fetchBrand, fetchData } from "../../redux/Cars/operation.js";
 import { useEffect } from "react";
+import { resetCars, setFilters } from "../../redux/Cars/slice.js";
 
 const CustomDropdownIndicator = (props) => {
   const { menuIsOpen } = props.selectProps;
@@ -52,16 +53,26 @@ const stylesPriceSelector = {
 
 const SearchBar = () => {
   const brandList = useSelector((state) => state.cars.brand);
+  const filters = useSelector((state) => state.cars.filters);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(resetCars());
+    dispatch(fetchData({ page: 1, limit: 16 }));
+  }, [dispatch, filters]);
+
+  useEffect(() => {
+    dispatch(fetchBrand());
+  }, [dispatch]);
 
   const brandOptions = brandList.map((brand) => ({
     value: brand,
     label: brand,
   }));
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchBrand());
-  }, [dispatch]);
 
   return (
     <Formik
@@ -71,8 +82,9 @@ const SearchBar = () => {
         from: "",
         to: "",
       }}
-      onSubmit={(values) => {
-        console.log(values);
+      onSubmit={(values, { resetForm }) => {
+        dispatch(setFilters(values));
+        resetForm();
       }}
     >
       {({ values, setFieldValue }) => (
@@ -87,6 +99,13 @@ const SearchBar = () => {
               placeholder="Choose a brand"
               styles={stylesBrandSelector}
               components={BrandComponents}
+              value={
+                brandOptions.find((option) => option.value === values.brand) ||
+                null
+              }
+              onChange={(selectedOption) =>
+                setFieldValue("brand", selectedOption.value)
+              }
             />
           </div>
 
@@ -127,12 +146,22 @@ const SearchBar = () => {
             <div className={css.rangeInputGroup}>
               <div className={css.inputWrapper}>
                 <span className={css.inputLabel}>From</span>
-                <input type="number" name="from" className={css.rangeInput} />
+                <input
+                  type="number"
+                  name="from"
+                  onChange={(e) => setFieldValue("from", e.target.value)}
+                  className={css.rangeInput}
+                />
               </div>
               <span className={css.separator}></span>
               <div className={css.inputWrapper}>
                 <span className={css.inputLabel}>To</span>
-                <input type="number" name="to" className={css.rangeInput} />
+                <input
+                  type="number"
+                  name="to"
+                  onChange={(e) => setFieldValue("to", e.target.value)}
+                  className={css.rangeInput}
+                />
               </div>
             </div>
           </div>
