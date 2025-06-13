@@ -1,5 +1,7 @@
 import css from "./DescriptionCar.module.css";
 
+const number = (img) => img.split("/").pop().split("-")[0];
+
 const getCityAndCountry = (address) => {
   if (!address) return "";
   const parts = address.split(",").map((part) => part.trim());
@@ -12,6 +14,17 @@ const formattedMileage = (mileage) => {
   return mileage.toLocaleString("uk-UA");
 };
 
+const capitalize = (type) => {
+  if (!type) return "";
+  return type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
+};
+
+const CheckIcon = () => (
+  <svg width="16" height="16">
+    <use href="/icons.svg#icon-check-circle"></use>
+  </svg>
+);
+
 const DescriptionCar = ({ car }) => {
   if (!car) return null;
 
@@ -19,13 +32,19 @@ const DescriptionCar = ({ car }) => {
     <div className={css.infoWrapper}>
       <div className={css.mainInfo}>
         <p className={css.brand}>
-          {car.brand} {car.model}, {car.year}
+          {car.brand} {car.model}, {car.year}{" "}
+          <span className={css.span}>Id: {number(car.img)}</span>
         </p>
         <div className={css.addressWrapper}>
-          <svg width="12" height="15">
-            <use href="/icons.svg#icon-location"></use>
-          </svg>
-          <p className={css.text}>{getCityAndCountry(car.address)}</p>
+          <div className={css.wrapperSvg}>
+            <svg width="12" height="15">
+              <use href="/icons.svg#icon-lacation"></use>
+            </svg>
+            <p className={`${css.text} ${css.address}`}>
+              {getCityAndCountry(car.address)}
+            </p>
+          </div>
+
           <p className={css.text}>
             Mileage:
             {formattedMileage(car.mileage)} km
@@ -39,43 +58,69 @@ const DescriptionCar = ({ car }) => {
       <div className={css.conditionWrapper}>
         <div className={css.condition}>
           <h4 className={css.title}>Rental conditions:</h4>
-          <ul>
-            <li>
-              {car.rentalConditions.find((cond) =>
-                cond.includes("Minimum age")
-              )}
-            </li>
-            <li>
-              {car.rentalConditions.find((cond) =>
-                cond.includes("Security deposit")
-              )}
-            </li>
-            <li>
-              {car.rentalConditions.find((cond) =>
-                cond.toLowerCase().includes("license")
-              )}
-            </li>
+          <ul className={css.itemWrapper}>
+            {car.rentalConditions.map((cond, index) => (
+              <li key={index} className={css.item}>
+                <div className={css.wrapperSvg}>
+                  <CheckIcon />
+                  {cond}
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div className={css.conditions}>
           <h4 className={css.title}>Car Specifications:</h4>
-          <p>Year: {car.year}</p>
-          <p>Type: {car.type}</p>
-          <p>FuelConsumption: {car.fuelConsumption}</p>
-          <p>Engine Size: {car.engineSize}</p>
+          <div className={css.itemWrapper}>
+            <div className={css.wrapperSvg}>
+              <svg width="12" height="15">
+                <use href="/icons.svg#icon-calendar"></use>
+              </svg>
+              <p>Year: {car.year}</p>
+            </div>
+            <div className={css.wrapperSvg}>
+              <svg width="12" height="15">
+                <use href="/icons.svg#icon-car"></use>
+              </svg>
+              <p>Type: {capitalize(car.type)}</p>
+            </div>
+
+            <div className={css.wrapperSvg}>
+              <svg width="12" height="15">
+                <use href="/icons.svg#icon-fuel"></use>
+              </svg>
+              <p>FuelConsumption: {car.fuelConsumption}</p>
+            </div>
+            <div className={css.wrapperSvg}>
+              <svg width="12" height="15">
+                <use href="/icons.svg#icon-gear"></use>
+              </svg>
+              <p>Engine Size: {car.engineSize}</p>
+            </div>
+          </div>
         </div>
 
         <div className={css.conditions}>
           <h4 className={css.title}>Accessories and functionalities:</h4>
-          <ul>
+          <ul className={`${css.itemWrapper} ${css.acc}`}>
             {car.accessories.map((acc, index) => (
-              <li key={index}>{acc}</li>
+              <li key={index}>
+                <div className={css.wrapperSvg}>
+                  <CheckIcon />
+                  {acc}
+                </div>
+              </li>
             ))}
           </ul>
-          <ul>
+          <ul className={css.itemWrapper}>
             {car.functionalities.map((fun, index) => (
-              <li key={index}>{fun}</li>
+              <li key={index}>
+                <div className={css.wrapperSvg}>
+                  <CheckIcon />
+                  {fun}
+                </div>
+              </li>
             ))}
           </ul>
         </div>

@@ -34,7 +34,7 @@ const AboutCar = ({ initialData }) => {
           alt={car.model}
           style={{ maxWidth: "640px" }}
         />
-        <BookingForm />
+        <BookingForm onAdd={(data) => console.log("Booked car:", data)} />
       </div>
 
       <DescriptionCar car={car} />

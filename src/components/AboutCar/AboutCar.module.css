@@ -1,5 +1,6 @@
 .wrapper {
   display: flex;
+  justify-content: center;
   gap: 72px;
   color: var(--main-black);
   padding: 84px 120px 104px;

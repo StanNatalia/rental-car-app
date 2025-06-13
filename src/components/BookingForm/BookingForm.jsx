@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { toast } from "react-toastify";
 
 const BookingForm = ({ onAdd }) => {
   const initialValues = {
@@ -20,27 +21,26 @@ const BookingForm = ({ onAdd }) => {
       bookingDate: values.bookingDate,
       comment: values.comment,
     });
-    console.log(values);
+    toast.success("Car successfully booked!");
     actions.resetForm();
   };
 
   const onlyLetter = /^[a-zA-Zа-яА-ЯёЁ\s]+$/;
-  const onlySigns = /^\d+$/;
 
   const applySchema = Yup.object().shape({
     name: Yup.string()
-      .required("this field is required")
-      .min(2, "at least 2 letters")
-      .max(20, "maximum 20 letters")
+      .required("This field is required")
+      .min(2, "At least 2 letters")
+      .max(20, "Maximum 20 letters")
       .matches(onlyLetter, "Only letters"),
+
     email: Yup.string()
-      .required("this field is required")
-      .min(7, "at least 7 signs")
-      .matches(onlySigns, "Only signs"),
-    bookingDate: Yup.string()
-      .required("this field is required")
-      .min(7, "at least 7 signs")
-      .matches(onlySigns, "Only signs"),
+      .required("This field is required")
+      .email("Invalid email"),
+
+    bookingDate: Yup.date()
+      .required("This field is required")
+      .typeError("Invalid date"),
   });
 
   return (

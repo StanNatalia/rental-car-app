@@ -10,9 +10,11 @@ const Header = () => {
   return (
     <>
       <header className={css.header}>
-        <svg width="104" height="16">
-          <use href="/icons.svg#icon-logo"></use>
-        </svg>
+        <NavLink to="/" className={css.logoLink}>
+          <svg width="104" height="16">
+            <use href="/icons.svg#icon-logo"></use>
+          </svg>
+        </NavLink>
         <nav className={css.nav}>
           <NavLink className={buildLinkClass} to="/">
             Home
