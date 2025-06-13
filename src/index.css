@@ -48,7 +48,7 @@ body {
   height: 100%;
   background-color: var(--main-white);
   font-family: var(--main-font);
-  line-height: 1.5;
+  line-height: 1.25;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 500;

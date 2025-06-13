@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCar } from "../../redux/Cars/operation";
+import BookingForm from "../BookingForm/BookingForm";
+import DescriptionCar from "../DescriptionCar/DescriptionCar";
 
 const AboutCar = ({ initialData }) => {
   const { type, mileage, year } = initialData;
@@ -25,25 +27,17 @@ const AboutCar = ({ initialData }) => {
 
   return (
     <div className={css.wrapper}>
-      <h2>
-        {car.brand} {car.model}
-      </h2>
-      <img src={car.img} alt={car.model} style={{ maxWidth: "640px" }} />
-      <p>
-        <strong>Price:</strong> ${car.rentalPrice}
-      </p>
-      <p>
-        <strong>Type:</strong> {type || car.type}
-      </p>
-      <p>
-        <strong>Year:</strong> {year || car.year}
-      </p>
-      <p>
-        <strong>Mileage:</strong> {mileage || car.mileage} km
-      </p>
-      <p>
-        <strong>Address:</strong> {car.address}
-      </p>
+      <div className={css.wrapperForm}>
+        <img
+          className={css.img}
+          src={car.img}
+          alt={car.model}
+          style={{ maxWidth: "640px" }}
+        />
+        <BookingForm />
+      </div>
+
+      <DescriptionCar car={car} />
     </div>
   );
 };
