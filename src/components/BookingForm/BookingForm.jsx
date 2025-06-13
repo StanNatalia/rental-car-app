@@ -9,19 +9,21 @@ const BookingForm = ({ onAdd }) => {
   const initialValues = {
     name: "",
     email: "",
-    bookingDate: "",
+    bookingDate: null,
     comment: "",
   };
 
   const handleSubmit = (values, actions) => {
+    const formattedDate = values.bookingDate.toLocaleDateString("uk-UA");
+
     onAdd({
       id: crypto.randomUUID(),
       name: values.name,
       email: values.email,
-      bookingDate: values.bookingDate,
+      bookingDate: formattedDate,
       comment: values.comment,
     });
-    toast.success("Car successfully booked!");
+    toast.success(`Booking confirmed for ${values.name} on ${formattedDate}`);
     actions.resetForm();
   };
 
@@ -93,6 +95,7 @@ const BookingForm = ({ onAdd }) => {
                     placeholderText="Select date"
                     className={css.field}
                     showPopperArrow={false}
+                    minDate={new Date()}
                   />
                 )}
               </Field>
