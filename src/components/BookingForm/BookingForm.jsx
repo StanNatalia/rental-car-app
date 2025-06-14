@@ -86,25 +86,19 @@ const BookingForm = ({ onAdd }) => {
                 />
               </div>
 
-              <div className={css.fieldWrapper}>
-                <Field name="bookingDate">
-                  {({ field, form }) => (
-                    <DatePicker
-                      selected={field.value ? new Date(field.value) : null}
-                      onChange={(date) =>
-                        form.setFieldValue("bookingDate", date)
-                      }
-                      name="date"
-                      dateFormat="dd.MM.yyyy"
-                      placeholderText="Select date"
-                      className={css.field}
-                      showPopperArrow={false}
-                      minDate={new Date()}
-                    />
-                  )}
-                </Field>
-                <ErrorMessage className={css.error} name="date" component="p" />
-              </div>
+              <Field name="bookingDate">
+                {({ field, form }) => (
+                  <DatePicker
+                    selected={field.value ? new Date(field.value) : null}
+                    onChange={(date) => form.setFieldValue("bookingDate", date)}
+                    dateFormat="dd.MM.yyyy"
+                    placeholderText="Select date"
+                    className={css.field}
+                    showPopperArrow={false}
+                    minDate={new Date()}
+                  />
+                )}
+              </Field>
 
               <Field
                 as="textarea"

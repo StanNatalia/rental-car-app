@@ -10,7 +10,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 createRoot(document.getElementById("root")).render(
-  <>
+  <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
@@ -19,5 +19,5 @@ createRoot(document.getElementById("root")).render(
       </PersistGate>
     </Provider>
     <ToastContainer position="top-center" autoClose={7000} />
-  </>
+  </StrictMode>
 );

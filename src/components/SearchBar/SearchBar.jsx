@@ -57,6 +57,15 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(resetCars());
+    dispatch(fetchData({ page: 1, limit: 16 }));
+  }, [dispatch, filters]);
+
+  useEffect(() => {
     dispatch(fetchBrand());
   }, [dispatch]);
 
@@ -68,16 +77,13 @@ const SearchBar = () => {
   return (
     <Formik
       initialValues={{
-        brand: filters.brand || "",
-        price: filters.price || null,
-        from: filters.from || "",
-        to: filters.to || "",
+        brand: "",
+        price: null,
+        from: "",
+        to: "",
       }}
       onSubmit={(values, { resetForm }) => {
-        console.log("Active filters:", filters);
-        dispatch(resetCars());
         dispatch(setFilters(values));
-        dispatch(fetchData({ page: 1, limit: 16 }));
         resetForm();
       }}
     >
@@ -142,7 +148,6 @@ const SearchBar = () => {
                 <span className={css.inputLabel}>From</span>
                 <input
                   type="number"
-                  value={values.from}
                   name="from"
                   onChange={(e) => setFieldValue("from", e.target.value)}
                   className={css.rangeInput}
@@ -153,7 +158,6 @@ const SearchBar = () => {
                 <span className={css.inputLabel}>To</span>
                 <input
                   type="number"
-                  value={values.to}
                   name="to"
                   onChange={(e) => setFieldValue("to", e.target.value)}
                   className={css.rangeInput}
