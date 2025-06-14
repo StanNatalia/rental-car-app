@@ -1,5 +1,7 @@
 import css from "./Hero.module.css";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+
 const Hero = () => {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -8,13 +10,32 @@ const Hero = () => {
 
   return (
     <div className={css.hero}>
-      <h1 className={css.title}>Find your perfect rental car</h1>
-      <p className={css.text}>
+      <motion.h1
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className={css.title}
+      >
+        Find your perfect rental car
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className={css.text}
+      >
         Reliable and budget-friendly rentals for any journey
-      </p>
-      <button className={css.btn} onClick={handleClick}>
+      </motion.p>
+
+      <motion.button
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className={css.btn}
+        onClick={handleClick}
+      >
         View Catalog
-      </button>
+      </motion.button>
     </div>
   );
 };

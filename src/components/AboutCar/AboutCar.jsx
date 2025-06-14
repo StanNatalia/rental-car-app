@@ -6,6 +6,7 @@ import { fetchCar } from "../../redux/Cars/operation";
 import BookingForm from "../BookingForm/BookingForm";
 import DescriptionCar from "../DescriptionCar/DescriptionCar";
 import Loader from "../Loader/Loader";
+import { motion } from "framer-motion";
 
 const AboutCar = () => {
   const { id } = useParams();
@@ -27,11 +28,14 @@ const AboutCar = () => {
   return (
     <div className={css.wrapper}>
       <div className={css.wrapperForm}>
-        <img
+        <motion.img
           className={css.img}
           src={car.img}
           alt={car.model}
           style={{ maxWidth: "640px" }}
+          initial={{ opacity: 0, scale: 0.97, y: 5 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         />
         <BookingForm onAdd={(data) => console.log("Booked car:", data)} />
       </div>

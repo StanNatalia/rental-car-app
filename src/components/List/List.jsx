@@ -1,6 +1,21 @@
 import { useSelector } from "react-redux";
 import Item from "../Item/Item";
 import css from "./List.module.css";
+import { motion } from "framer-motion";
+
+const listVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 5 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const List = () => {
   const cars = useSelector((state) => state.cars.items);
@@ -25,14 +40,19 @@ const List = () => {
     return <p>No cars available...</p>;
   }
 
-  console.log("cars:", cars);
-
   return (
-    <ul className={css.list}>
+    <motion.ul
+      className={css.list}
+      initial="hidden"
+      animate="visible"
+      variants={listVariants}
+    >
       {filteredCars.map((item) => (
-        <Item {...item} key={item.id} />
+        <motion.li key={item.id} variants={itemVariants}>
+          <Item {...item} />
+        </motion.li>
       ))}
-    </ul>
+    </motion.ul>
   );
 };
 
