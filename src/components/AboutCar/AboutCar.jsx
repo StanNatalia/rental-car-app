@@ -5,10 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCar } from "../../redux/Cars/operation";
 import BookingForm from "../BookingForm/BookingForm";
 import DescriptionCar from "../DescriptionCar/DescriptionCar";
+import Loader from "../Loader/Loader";
 
-const AboutCar = ({ initialData }) => {
-  const { type, mileage, year } = initialData;
-
+const AboutCar = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -21,8 +20,8 @@ const AboutCar = ({ initialData }) => {
     dispatch(fetchCar(id));
   }, [dispatch, id]);
 
-  if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error loading car details</p>;
+  if (isLoading) return <Loader />;
   if (!car) return null;
 
   return (

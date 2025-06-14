@@ -5,6 +5,7 @@ import css from "./ListSection.module.css";
 import { useEffect } from "react";
 import { fetchData } from "../../redux/Cars/operation";
 import { incrementPage, resetCars } from "../../redux/Cars/slice";
+import Loader from "../Loader/Loader";
 
 const ListSection = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const ListSection = () => {
   return (
     <div className={css.wrapper}>
       <SearchBar />
+      {isLoading && <Loader />}
       <List cars={items} />
       {items.length < total && (
         <button

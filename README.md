@@ -1,12 +1,47 @@
-# React + Vite
+# Rental Car App 🚗
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Опис
 
-Currently, two official plugins are available:
+**Rental Car App** — це сучасний вебзастосунок для перегляду та бронювання авто напрокат. Додаток дозволяє користувачам фільтрувати автівки за брендом, ціною, пробігом та іншими параметрами, а також додавати їх до списку обраного.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Основні функції
 
-## Expanding the ESLint configuration
+- 🔍 Пошук і фільтрація автомобілів
+- 📃 Перегляд детальної інформації про авто
+- 💙 Додавання авто до списку обраного
+- 📥 Пагінація з кнопкою “Load More”
+- 📅 Вибір дати бронювання
+- 🌙 Відправлення форми бронювання машини
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Технології
+
+- **Frontend:** React, Redux, Redux Persist, React Router, Formik, Yup, React Select
+- **Інші:** CSS Modules, React Spinners
+
+## Автор
+
+👩‍💻 Стан Наталя
+GitHub: https://github.com/StanNatalia
+Email: stan.natasha.dev@gmail.com
+
+## 🔧 Інструкція з установки
+
+1. Клонувати репозиторій:
+
+   git clone https://github.com/StanNatalia/rental-car-app.git
+
+2. Перейти до папки проєкту:
+
+   cd rental-car-app
+
+3. Встановити залежності:
+
+   npm install
+
+4. Запустити локальний сервер:
+
+   npm run dev
+
+5. Відкрити у браузері за адресою:
+
+   http://localhost:5173

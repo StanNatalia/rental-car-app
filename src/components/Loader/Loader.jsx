@@ -1,30 +1,16 @@
-import { CSSProperties } from "react";
-import { ClipLoader } from "react-spinners";
-
-const override: CSSProperties = {
-  display: "block",
-  margin: "0 auto",
-  borderColor: "red",
-};
+import { useSelector } from "react-redux";
+import { PulseLoader } from "react-spinners";
+import css from "./Loader.module.css";
 
 const Loader = () => {
-  let [loading, setLoading] = useState(true);
-  let [color, setColor] = useState("#ffffff");
+  const isLoading = useSelector((state) => state.cars.isLoading);
 
   return (
-    <div className="sweet-loading">
-      <button onClick={() => setLoading(!loading)}>Toggle Loader</button>
-      <input
-        value={color}
-        onChange={(input) => setColor(input.target.value)}
-        placeholder="Color of the loader"
-      />
-
-      <ClipLoader
-        color={color}
-        loading={loading}
-        cssOverride={override}
-        size={150}
+    <div className={css.loaderWrapper}>
+      <PulseLoader
+        color="#3470ff"
+        loading={isLoading}
+        size={40}
         aria-label="Loading Spinner"
         data-testid="loader"
       />

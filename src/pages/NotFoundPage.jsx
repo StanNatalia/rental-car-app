@@ -1,5 +1,7 @@
+import NotFound from "../components/NotFound/NotFound";
+
 const NotFoundPage = () => {
-  return <div>Error 404</div>;
+  return <NotFound />;
 };
 
 export default NotFoundPage;

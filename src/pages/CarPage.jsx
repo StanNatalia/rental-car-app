@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import AboutCar from "./../components/AboutCar/AboutCar";
+import { useSelector } from "react-redux";
 
 const CarPage = () => {
   const location = useLocation();
