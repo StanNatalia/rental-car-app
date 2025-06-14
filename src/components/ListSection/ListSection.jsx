@@ -2,9 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import List from "../List/List";
 import SearchBar from "../SearchBar/SearchBar";
 import css from "./ListSection.module.css";
-import { useEffect } from "react";
 import { fetchData } from "../../redux/Cars/operation";
-import { incrementPage, resetCars } from "../../redux/Cars/slice";
+import { incrementPage } from "../../redux/Cars/slice";
 import Loader from "../Loader/Loader";
 
 const ListSection = () => {
