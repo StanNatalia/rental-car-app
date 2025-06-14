@@ -58,7 +58,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     dispatch(resetCars());
-    dispatch(fetchData({ page: 1, limit: 16 }));
+    dispatch(fetchData({ page: 1, limit: 16, filters }));
   }, [dispatch, filters]);
 
   useEffect(() => {

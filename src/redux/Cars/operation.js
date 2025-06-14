@@ -3,10 +3,8 @@ import axios from "axios";
 
 export const fetchData = createAsyncThunk(
   "cars/fetchData",
-  async ({ page, limit }, { getState, rejectWithValue }) => {
+  async ({ page, limit, filters }, { rejectWithValue }) => {
     try {
-      const { filters } = getState().cars;
-
       const params = new URLSearchParams({
         page,
         limit,

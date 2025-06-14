@@ -11,11 +11,12 @@ const ListSection = () => {
   const { items, page, limit, isLoading, total } = useSelector(
     (state) => state.cars
   );
+  const filters = useSelector((state) => state.cars.filters);
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
     dispatch(incrementPage());
-    dispatch(fetchData({ page: nextPage, limit }));
+    dispatch(fetchData({ page: nextPage, limit, filters }));
   };
 
   return (
