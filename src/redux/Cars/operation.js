@@ -6,6 +6,7 @@ export const fetchData = createAsyncThunk(
   async ({ page, limit }, { getState, rejectWithValue }) => {
     try {
       const { filters } = getState().cars;
+      console.log("Active filters:", filters);
 
       const params = new URLSearchParams({
         page,
@@ -13,9 +14,17 @@ export const fetchData = createAsyncThunk(
       });
 
       if (filters.brand) params.append("brand", filters.brand);
-      if (filters.price) params.append("price_lte", filters.price.value);
-      if (filters.from) params.append("mileage_gte", filters.from);
-      if (filters.to) params.append("mileage_lte", filters.to);
+      if (filters.price && filters.price.value) {
+        params.append("price_lte", String(filters.price.value));
+      }
+
+      if (filters.from) {
+        params.append("mileage_gte", String(Number(filters.from)));
+      }
+
+      if (filters.to) {
+        params.append("mileage_lte", String(Number(filters.to)));
+      }
 
       const { data } = await axios.get(
         `https://car-rental-api.goit.global/cars?${params.toString()}`

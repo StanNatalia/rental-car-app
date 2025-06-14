@@ -14,7 +14,7 @@ const ListSection = () => {
 
   useEffect(() => {
     dispatch(resetCars());
-    dispatch(fetchData({ page: 1, limit }));
+    dispatch(fetchData({ page: 1, limit: 16 }));
   }, [dispatch, limit]);
 
   const handleLoadMore = () => {
