@@ -25,3 +25,21 @@
 .active {
   color: var(--main-button-hover);
 }
+
+@media (max-width: 900px) {
+  .header {
+    padding: 24px 50px;
+  }
+  .nav {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 490px) {
+  .header {
+    padding: 24px 30px;
+  }
+  .nav {
+    gap: 15px;
+  }
+}

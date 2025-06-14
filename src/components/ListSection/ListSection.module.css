@@ -28,3 +28,9 @@
   color: var(--main-black);
   margin-top: 40px;
 }
+
+@media (max-width: 1200px) {
+  .wrapper {
+    padding: 84px 80px 124px;
+  }
+}

@@ -14,7 +14,6 @@ export const CustomSelectStyles = {
     outline: "none",
     boxShadow: "none",
     minHeight: "44px",
-    minWidth: "202px",
   }),
   option: (base, state) => ({
     ...base,
@@ -33,7 +32,6 @@ export const CustomSelectStyles = {
   placeholder: (base) => ({
     ...base,
     color: "#101828",
-    marginRight: "32px",
   }),
   menu: (base) => ({
     ...base,

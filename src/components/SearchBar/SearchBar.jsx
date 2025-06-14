@@ -89,50 +89,55 @@ const SearchBar = () => {
             <label className={css.label} htmlFor="brand">
               Car brand
             </label>
-            <Select
-              name="brand"
-              options={brandOptions}
-              placeholder="Choose a brand"
-              styles={stylesBrandSelector}
-              components={BrandComponents}
-              value={
-                brandOptions.find((option) => option.value === values.brand) ||
-                null
-              }
-              onChange={(selectedOption) =>
-                setFieldValue("brand", selectedOption.value)
-              }
-            />
+            <div className={css.selectWrapper}>
+              <Select
+                name="brand"
+                options={brandOptions}
+                placeholder="Choose a brand"
+                styles={stylesBrandSelector}
+                components={BrandComponents}
+                value={
+                  brandOptions.find(
+                    (option) => option.value === values.brand
+                  ) || null
+                }
+                onChange={(selectedOption) =>
+                  setFieldValue("brand", selectedOption.value)
+                }
+              />
+            </div>
           </div>
 
           <div className={css.wrapper}>
             <label className={css.label} htmlFor="price">
               Price/ 1 hour
             </label>
-            <Select
-              name="price"
-              placeholder="Choose a price"
-              styles={stylesPriceSelector}
-              components={PriceComponents}
-              options={[
-                { value: 30, label: "30" },
-                { value: 40, label: "40" },
-                { value: 50, label: "50" },
-                { value: 60, label: "60" },
-                { value: 70, label: "70" },
-                { value: 80, label: "80" },
-                { value: 90, label: "90" },
-                { value: 100, label: "100" },
-                { value: 110, label: "110" },
-                { value: 120, label: "120" },
-              ]}
-              value={values.price}
-              onChange={(selectedOption) =>
-                setFieldValue("price", selectedOption)
-              }
-              formatValueLabel={(e) => `To $${e.label}`}
-              isSearchable={false}
-            />
+            <div className={css.selectWrapper}>
+              <Select
+                name="price"
+                placeholder="Choose a price"
+                styles={stylesPriceSelector}
+                components={PriceComponents}
+                options={[
+                  { value: 30, label: "30" },
+                  { value: 40, label: "40" },
+                  { value: 50, label: "50" },
+                  { value: 60, label: "60" },
+                  { value: 70, label: "70" },
+                  { value: 80, label: "80" },
+                  { value: 90, label: "90" },
+                  { value: 100, label: "100" },
+                  { value: 110, label: "110" },
+                  { value: 120, label: "120" },
+                ]}
+                value={values.price}
+                onChange={(selectedOption) =>
+                  setFieldValue("price", selectedOption)
+                }
+                formatValueLabel={(e) => `To $${e.label}`}
+                isSearchable={false}
+              />
+            </div>
           </div>
 
           <div className={css.wrapper}>

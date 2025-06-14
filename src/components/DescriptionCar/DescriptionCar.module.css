@@ -58,7 +58,6 @@
 
 .description {
   margin-bottom: 68px;
-  width: 488px;
 }
 
 .conditionWrapper {
@@ -81,4 +80,7 @@
 
 .acc {
   margin-bottom: 16px;
+}
+
+@media (max-width: ) {
 }
