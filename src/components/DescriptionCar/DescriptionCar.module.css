@@ -58,6 +58,7 @@
 
 .description {
   margin-bottom: 68px;
+  width: 488px;
 }
 
 .conditionWrapper {
@@ -82,5 +83,47 @@
   margin-bottom: 16px;
 }
 
-@media (max-width: ) {
+@media (max-width: 1200px) {
+  .infoWrapper {
+    max-width: 640px;
+    width: 100%;
+  }
+
+  .conditionWrapper {
+    gap: 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  .infoWrapper {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 730px) {
+  .infoWrapper {
+    max-width: 400px;
+  }
+
+  .description {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 530px) {
+  .conditionWrapper {
+    gap: 40px;
+  }
+
+  .infoWrapper {
+    max-width: 350px;
+  }
+
+  .description {
+    margin-bottom: 45px;
+  }
+
+  .description {
+    margin-bottom: 30px;
+  }
 }

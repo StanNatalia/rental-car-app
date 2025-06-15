@@ -69,6 +69,16 @@
   padding-right: 10px;
 }
 
+.rangeInput::-webkit-outer-spin-button,
+.rangeInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.rangeInput[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .inputWrapper:last-of-type .rangeInput {
   padding-left: 45px;
 }

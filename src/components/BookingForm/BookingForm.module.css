@@ -80,3 +80,47 @@
   color: red;
   font-size: 14px;
 }
+
+@media (max-width: 900px) {
+  .form {
+    width: 500px;
+  }
+
+  .img {
+    width: 500px;
+  }
+
+  .inputDatePicker {
+    width: 434px;
+  }
+}
+
+@media (max-width: 730px) {
+  .form {
+    width: 400px;
+  }
+
+  .inputDatePicker {
+    width: 334px;
+  }
+}
+
+@media (max-width: 530px) {
+  .form {
+    width: 350px;
+  }
+
+  .inputDatePicker {
+    width: 284px;
+  }
+}
+
+@media (max-width: 400px) {
+  .form {
+    width: 350px;
+  }
+
+  .inputDatePicker {
+    width: 284px;
+  }
+}

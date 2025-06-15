@@ -44,4 +44,4 @@ Email: stan.natasha.dev@gmail.com
 
 5. Відкрити у браузері за адресою:
 
-   http://localhost:5173
+   https://rental-car-app-eight.vercel.app/catalog
