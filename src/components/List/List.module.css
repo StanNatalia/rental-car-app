@@ -5,3 +5,8 @@
   column-gap: 32px;
   justify-content: center;
 }
+
+.noResults {
+  font-size: 30px;
+  color: black;
+}

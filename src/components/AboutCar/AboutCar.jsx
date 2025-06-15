@@ -45,7 +45,7 @@ const AboutCar = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
           />
         </div>
-        <BookingForm onAdd={(data) => console.log("Booked car:", data)} />
+        <BookingForm onAdd={() => {}} />
       </div>
 
       <DescriptionCar car={car} />

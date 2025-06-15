@@ -19,6 +19,7 @@ const itemVariants = {
 
 const List = () => {
   const cars = useSelector((state) => state.cars.items);
+  const isLoading = useSelector((state) => state.cars.isLoading); // добавь, если используешь
   const filters = useSelector((state) => state.cars.filters);
 
   const filteredCars = cars.filter((car) => {
@@ -36,8 +37,20 @@ const List = () => {
     return matchBrand && matchPrice && matchFrom && matchTo;
   });
 
-  if (!Array.isArray(cars) || cars.length === 0) {
-    return <p>No cars available...</p>;
+  if (!isLoading && (!Array.isArray(cars) || cars.length === 0)) {
+    return (
+      <p className={css.noResults}>
+        Unfortunately, there are no cars available.
+      </p>
+    );
+  }
+
+  if (!isLoading && Array.isArray(cars) && filteredCars.length === 0) {
+    return (
+      <p className={css.noResults}>
+        Unfortunately, there are no suitable cars.
+      </p>
+    );
   }
 
   return (

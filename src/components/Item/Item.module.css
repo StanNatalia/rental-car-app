@@ -24,6 +24,12 @@
   margin-bottom: 16px;
 }
 
+.name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .icon {
   position: absolute;
   top: 16px;
