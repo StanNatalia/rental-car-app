@@ -7,6 +7,7 @@ import BookingForm from "../BookingForm/BookingForm";
 import DescriptionCar from "../DescriptionCar/DescriptionCar";
 import Loader from "../Loader/Loader";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 
 const AboutCar = () => {
   const { id } = useParams();
@@ -16,6 +17,12 @@ const AboutCar = () => {
   const car = useSelector((state) => state.cars.car);
   const isLoading = useSelector((state) => state.cars.isLoading);
   const isError = useSelector((state) => state.cars.isError);
+
+  useEffect(() => {
+    if (isError) {
+      toast.error("Ooooops, something went wrong. Please, try again later");
+    }
+  }, [isError]);
 
   useEffect(() => {
     dispatch(fetchCar(id));

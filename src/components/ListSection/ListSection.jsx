@@ -5,6 +5,8 @@ import css from "./ListSection.module.css";
 import { fetchData } from "../../redux/Cars/operation";
 import { incrementPage } from "../../redux/Cars/slice";
 import Loader from "../Loader/Loader";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const ListSection = () => {
   const dispatch = useDispatch();
@@ -19,12 +21,20 @@ const ListSection = () => {
     dispatch(fetchData({ page: nextPage, limit, filters }));
   };
 
+  const isError = useSelector((state) => state.cars.isError);
+
+  useEffect(() => {
+    if (isError) {
+      toast.error("Ooooops, something went wrong. Please, try again later");
+    }
+  }, [isError]);
+
   return (
     <div className={css.wrapper}>
       <SearchBar />
-      {isLoading && <Loader />}
       <List cars={items} />
-      {items.length < total && (
+      {isLoading && <Loader />}
+      {items.length < total && !isLoading && (
         <button
           className={css.btn}
           onClick={handleLoadMore}
