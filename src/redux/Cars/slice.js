@@ -4,7 +4,7 @@ import { fetchData, fetchBrand, fetchCar } from "./operation";
 const initialState = {
   items: [],
   page: 1,
-  limit: 16,
+  limit: 12,
   total: 0,
   favorites: [],
   isLoading: false,
