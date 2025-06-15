@@ -14,6 +14,7 @@
   align-items: center;
   margin-bottom: 16px;
 }
+
 .brand {
   font-weight: 600;
   font-size: 24px;
@@ -107,10 +108,18 @@
 
   .description {
     margin-bottom: 40px;
+    width: 350px;
   }
 }
 
 @media (max-width: 530px) {
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+  }
+
   .conditionWrapper {
     gap: 40px;
   }
@@ -120,10 +129,13 @@
   }
 
   .description {
-    margin-bottom: 45px;
+    margin-bottom: 30px;
+    width: 250px;
   }
 
-  .description {
-    margin-bottom: 30px;
+  .addressWrapper {
+    flex-direction: column;
+    gap: 5px;
+    align-items: start;
   }
 }
