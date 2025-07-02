@@ -1,9 +1,6 @@
 :root {
-  --font-inter: "Inter", sans-serif;
-  --font-manrope: "Manrope", sans-serif;
-
-  --main-font: var(--font-inter);
-  --accent-font: var(--font-manrope);
+  --font-family: "Manrope", sans-serif;
+  --second-family: "Inter", sans-serif;
 
   --main-black: #101828;
   --main-grey: #8d929a;
@@ -47,7 +44,7 @@ select {
 body {
   height: 100%;
   background-color: var(--main-white);
-  font-family: var(--main-font);
+  font-family: var(--font-family);
   line-height: 1.25;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

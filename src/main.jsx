@@ -18,6 +18,10 @@ createRoot(document.getElementById("root")).render(
         </BrowserRouter>
       </PersistGate>
     </Provider>
-    <ToastContainer position="top-center" autoClose={7000} />
+    <ToastContainer
+      position="top-center"
+      reverseOrder={false}
+      autoClose={7000}
+    />
   </>
 );

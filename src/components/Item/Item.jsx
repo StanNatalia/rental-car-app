@@ -2,21 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import css from "./Item.module.css";
 import { toggleFavorite } from "../../redux/Cars/slice";
+import { capitalize } from "../../utils/utils";
+import { formattedMileage } from "../../utils/utils";
 
 const getCityAndCountry = (address) => {
   const parts = address.split(",").map((part) => part.trim());
   const city = parts[parts.length - 2];
   const country = parts[parts.length - 1];
   return `${city} | ${country}`;
-};
-
-const capitalize = (type) => {
-  if (!type) return "";
-  return type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
-};
-
-const formattedMileage = (mileage) => {
-  return mileage.toLocaleString("uk-UA");
 };
 
 const Item = ({
@@ -50,25 +43,22 @@ const Item = ({
       <div className={css.itemWrapper}>
         <div className={css.imageWrapper}>
           <img src={img} alt={`${brand} ${model}`} className={css.img} />
-          <svg
-            width="16"
-            height="15"
-            className={css.icon}
-            onClick={handleToggleFavorite}
-          >
-            <use
-              href={
-                isFavorite
-                  ? "/icons.svg#icon-blue-like"
-                  : "/icons.svg#icon-like"
-              }
-            ></use>
-          </svg>
+          <button onClick={handleToggleFavorite}>
+            <svg width="16" height="15" className={css.icon}>
+              <use
+                href={
+                  isFavorite
+                    ? "/icons.svg#icon-blue-like"
+                    : "/icons.svg#icon-like"
+                }
+              ></use>
+            </svg>
+          </button>
         </div>
         <div className={css.wrapperName}>
-          <p className={css.name}>
+          <h3 className={css.name}>
             {brand} <span className={css.span}>{model}</span>, {year}
-          </p>
+          </h3>
           <p className={css.name}>${rentalPrice}</p>
         </div>
         <div className={css.wrapperInfo}>

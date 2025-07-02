@@ -25,9 +25,8 @@
 }
 
 .name {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .icon {
@@ -40,6 +39,8 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  /* flex-wrap: wrap;
+  gap: 5px; */
   justify-content: space-between;
   white-space: nowrap;
   color: #000;
@@ -48,7 +49,8 @@
 }
 
 .span {
-  color: var(--main-light-blue);
+  margin-left: 4px;
+  color: var(--main-button);
 }
 
 .wrapperInfo {

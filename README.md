@@ -1,47 +1,52 @@
 # Rental Car App 🚗
 
-## Опис
+## Description
 
-**Rental Car App** — це сучасний вебзастосунок для перегляду та бронювання авто напрокат. Додаток дозволяє користувачам фільтрувати автівки за брендом, ціною, пробігом та іншими параметрами, а також додавати їх до списку обраного.
+**Rental Car App** — a modern web application for browsing and booking rental cars. The app allows users to filter vehicles by brand, price, mileage, and other parameters, as well as add them to their favorites list.
 
-## Основні функції
+## Main Features
 
-- 🔍 Пошук і фільтрація автомобілів
-- 📃 Перегляд детальної інформації про авто
-- 💙 Додавання авто до списку обраного
-- 📥 Пагінація з кнопкою “Load More”
-- 📅 Вибір дати бронювання
-- 🌙 Відправлення форми бронювання машини
+- 🔍 Search and filter cars
 
-## Технології
+- 📃 View detailed car information
 
-- **Frontend:** React, Redux, Redux Persist, React Router, Formik, Yup, React Select
-- **Інші:** CSS Modules, React Spinners
+- 💙 Add cars to the favorites list
 
-## Автор
+- 📥 Pagination with a “Load More” button
 
-👩‍💻 Стан Наталя
+- 📅 Select a booking date
+
+- 🌙 Submit a car booking form
+
+## Technologies
+
+- **Frontend:** React, Redux, Redux Persist, React Router, React Spinners, Formik, Yup, React Select
+- **Інші:** CSS Modules, Vite, Axios, REST API,
+
+## Author
+
+👩‍💻 Stan Natasha
 GitHub: https://github.com/StanNatalia
 Email: stan.natasha.dev@gmail.com
 
-## 🔧 Інструкція з установки
+## 🔧 Installation Instructions
 
-1. Клонувати репозиторій:
+1. Clone the repository:
 
    git clone https://github.com/StanNatalia/rental-car-app.git
 
-2. Перейти до папки проєкту:
+2. Navigate to the project folder:
 
    cd rental-car-app
 
-3. Встановити залежності:
+3. Install dependencies:
 
    npm install
 
-4. Запустити локальний сервер:
+4. Start the development server:
 
    npm run dev
 
-5. Відкрити у браузері за адресою:
+5. Open in your browser at:
 
 https://rental-car-app-git-main-natasha-stans-projects.vercel.app/

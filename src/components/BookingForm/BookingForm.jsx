@@ -20,7 +20,7 @@ const BookingForm = ({ onAdd }) => {
       id: crypto.randomUUID(),
       name: values.name,
       email: values.email,
-      bookingDate: formattedDate,
+      bookingDateRange: { startDate: null, endDate: null },
       comment: values.comment,
     });
     toast.success(`Booking confirmed for ${values.name} on ${formattedDate}`);
@@ -87,20 +87,28 @@ const BookingForm = ({ onAdd }) => {
               </div>
 
               <div className={css.fieldWrapper}>
-                <Field name="bookingDate">
-                  {({ field, form }) => (
-                    <DatePicker
-                      selected={field.value ? new Date(field.value) : null}
-                      onChange={(date) =>
-                        form.setFieldValue("bookingDate", date)
-                      }
-                      dateFormat="dd.MM.yyyy"
-                      placeholderText="Select date"
-                      className={`${css.field} ${css.inputDatePicker}`}
-                      showPopperArrow={false}
-                      minDate={new Date()}
-                    />
-                  )}
+                <Field name="bookingDateRange">
+                  {({ field, form }) => {
+                    const { startDate, endDate } = field.value || {};
+                    return (
+                      <DatePicker
+                        selectsRange
+                        startDate={startDate ? new Date(startDate) : null}
+                        endDate={endDate ? new Date(endDate) : null}
+                        onChange={(dates) => {
+                          form.setFieldValue("bookingDateRange", {
+                            startDate: dates[0],
+                            endDate: dates[1],
+                          });
+                        }}
+                        dateFormat="dd.MM.yyyy"
+                        placeholderText="Select date range"
+                        className={`${css.field} ${css.inputDatePicker}`}
+                        showPopperArrow={false}
+                        minDate={new Date()}
+                      />
+                    );
+                  }}
                 </Field>
                 <ErrorMessage
                   className={css.error}

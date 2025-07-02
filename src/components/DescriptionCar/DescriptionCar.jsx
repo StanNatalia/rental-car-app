@@ -1,4 +1,6 @@
 import css from "./DescriptionCar.module.css";
+import { capitalize } from "../../utils/utils";
+import { formattedMileage } from "../../utils/utils";
 
 const number = (img) => img.split("/").pop().split("-")[0];
 
@@ -8,15 +10,6 @@ const getCityAndCountry = (address) => {
   const city = parts[parts.length - 2] || "";
   const country = parts[parts.length - 1] || "";
   return `${city}, ${country}`;
-};
-
-const formattedMileage = (mileage) => {
-  return mileage.toLocaleString("uk-UA");
-};
-
-const capitalize = (type) => {
-  if (!type) return "";
-  return type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
 };
 
 const CheckIcon = () => (
@@ -31,10 +24,10 @@ const DescriptionCar = ({ car }) => {
   return (
     <div className={css.infoWrapper}>
       <div className={css.mainInfo}>
-        <p className={css.brand}>
+        <h3 className={css.brand}>
           {car.brand} {car.model}, {car.year}{" "}
           <span className={css.span}>Id: {number(car.img)}</span>
-        </p>
+        </h3>
         <div className={css.addressWrapper}>
           <div className={css.wrapperSvg}>
             <svg width="12" height="15">
