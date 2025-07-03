@@ -3,7 +3,7 @@ import List from "../List/List";
 import SearchBar from "../SearchBar/SearchBar";
 import css from "./ListSection.module.css";
 import { fetchData } from "../../redux/Cars/operation";
-import { incrementPage } from "../../redux/Cars/slice";
+import { incrementPage, resetCars, resetFilters } from "../../redux/Cars/slice";
 import Loader from "../Loader/Loader";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
@@ -25,6 +25,11 @@ const ListSection = () => {
   };
 
   const isError = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(resetFilters());
+    dispatch(resetCars());
+  }, [dispatch]);
 
   useEffect(() => {
     if (isError) {

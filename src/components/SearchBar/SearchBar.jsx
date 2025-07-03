@@ -7,11 +7,7 @@ import { fetchBrand, fetchData } from "../../redux/Cars/operation.js";
 import { useEffect } from "react";
 import { resetCars, setFilters } from "../../redux/Cars/slice.js";
 import { toast } from "react-toastify";
-import {
-  selectBrands,
-  selectError,
-  selectFilters,
-} from "../../redux/Cars/selectors.js";
+import { selectBrands, selectError } from "../../redux/Cars/selectors.js";
 
 const CustomDropdownIndicator = (props) => {
   const { menuIsOpen } = props.selectProps;
@@ -59,16 +55,11 @@ const stylesPriceSelector = {
 
 const SearchBar = () => {
   const brandList = useSelector(selectBrands);
-  const filters = useSelector(selectFilters);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(resetCars());
-    dispatch(fetchData({ page: 1, limit: 12, filters }));
-  }, [dispatch, filters]);
-
-  useEffect(() => {
     dispatch(fetchBrand());
+    dispatch(fetchData({ page: 1, limit: 12, filters: {} }));
   }, [dispatch]);
 
   const isError = useSelector(selectError);
@@ -94,6 +85,8 @@ const SearchBar = () => {
       }}
       onSubmit={(values, { resetForm }) => {
         dispatch(setFilters(values));
+        dispatch(resetCars());
+        dispatch(fetchData({ page: 1, limit: 12, filters: values }));
         resetForm();
       }}
     >

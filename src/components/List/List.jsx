@@ -2,6 +2,11 @@ import { useSelector } from "react-redux";
 import Item from "../Item/Item";
 import css from "./List.module.css";
 import { motion } from "framer-motion";
+import {
+  selectFilters,
+  selectIsLoading,
+  selectItems,
+} from "../../redux/Cars/selectors";
 
 const listVariants = {
   hidden: {},
@@ -18,9 +23,9 @@ const itemVariants = {
 };
 
 const List = () => {
-  const cars = useSelector((state) => state.cars.items);
-  const isLoading = useSelector((state) => state.cars.isLoading); // добавь, если используешь
-  const filters = useSelector((state) => state.cars.filters);
+  const cars = useSelector(selectItems);
+  const isLoading = useSelector(selectIsLoading);
+  const filters = useSelector(selectFilters);
 
   const filteredCars = cars.filter((car) => {
     const matchBrand = filters.brand

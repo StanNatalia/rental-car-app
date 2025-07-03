@@ -27,6 +27,17 @@ const slice = createSlice({
       state.items = [];
       state.page = 1;
     },
+    setFilters(state, action) {
+      state.filters = action.payload;
+    },
+    resetFilters(state) {
+      state.filters = {
+        brand: "",
+        price: null,
+        from: "",
+        to: "",
+      };
+    },
     incrementPage(state) {
       state.page += 1;
     },
@@ -37,9 +48,6 @@ const slice = createSlice({
       } else {
         state.favorites.push(carId);
       }
-    },
-    setFilters(state, action) {
-      state.filters = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -86,6 +94,11 @@ const slice = createSlice({
   },
 });
 
-export const { resetCars, incrementPage, toggleFavorite, setFilters } =
-  slice.actions;
+export const {
+  resetCars,
+  incrementPage,
+  toggleFavorite,
+  setFilters,
+  resetFilters,
+} = slice.actions;
 export const carReducer = slice.reducer;
