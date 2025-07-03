@@ -7,6 +7,11 @@ import { fetchBrand, fetchData } from "../../redux/Cars/operation.js";
 import { useEffect } from "react";
 import { resetCars, setFilters } from "../../redux/Cars/slice.js";
 import { toast } from "react-toastify";
+import {
+  selectBrands,
+  selectError,
+  selectFilters,
+} from "../../redux/Cars/selectors.js";
 
 const CustomDropdownIndicator = (props) => {
   const { menuIsOpen } = props.selectProps;
@@ -53,8 +58,8 @@ const stylesPriceSelector = {
 };
 
 const SearchBar = () => {
-  const brandList = useSelector((state) => state.cars.brand);
-  const filters = useSelector((state) => state.cars.filters);
+  const brandList = useSelector(selectBrands);
+  const filters = useSelector(selectFilters);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -66,7 +71,7 @@ const SearchBar = () => {
     dispatch(fetchBrand());
   }, [dispatch]);
 
-  const isError = useSelector((state) => state.cars.isError);
+  const isError = useSelector(selectError);
 
   useEffect(() => {
     if (isError) {

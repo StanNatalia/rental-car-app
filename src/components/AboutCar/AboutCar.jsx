@@ -8,15 +8,20 @@ import DescriptionCar from "../DescriptionCar/DescriptionCar";
 import Loader from "../Loader/Loader";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
+import {
+  selectCar,
+  selectError,
+  selectIsLoading,
+} from "../../redux/Cars/selectors";
 
 const AboutCar = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
 
-  const car = useSelector((state) => state.cars.car);
-  const isLoading = useSelector((state) => state.cars.isLoading);
-  const isError = useSelector((state) => state.cars.isError);
+  const car = useSelector(selectCar);
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectError);
 
   useEffect(() => {
     if (isError) {

@@ -7,13 +7,16 @@ import { incrementPage } from "../../redux/Cars/slice";
 import Loader from "../Loader/Loader";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import {
+  selectCars,
+  selectError,
+  selectFilters,
+} from "../../redux/Cars/selectors";
 
 const ListSection = () => {
   const dispatch = useDispatch();
-  const { items, page, limit, isLoading, total } = useSelector(
-    (state) => state.cars
-  );
-  const filters = useSelector((state) => state.cars.filters);
+  const { items, page, limit, isLoading, total } = useSelector(selectCars);
+  const filters = useSelector(selectFilters);
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
@@ -21,7 +24,7 @@ const ListSection = () => {
     dispatch(fetchData({ page: nextPage, limit, filters }));
   };
 
-  const isError = useSelector((state) => state.cars.isError);
+  const isError = useSelector(selectError);
 
   useEffect(() => {
     if (isError) {

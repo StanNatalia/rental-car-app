@@ -4,26 +4,38 @@ import * as Yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
+import { CustomDateInput } from "../CustomDateInput/CustomDateInput";
 
 const BookingForm = ({ onAdd }) => {
   const initialValues = {
     name: "",
     email: "",
-    bookingDate: null,
+    bookingDateRange: { startDate: null, endDate: null },
     comment: "",
   };
 
   const handleSubmit = (values, actions) => {
-    const formattedDate = values.bookingDate.toLocaleDateString("uk-UA");
+    const { startDate, endDate } = values.bookingDateRange;
+
+    const formattedStart = startDate
+      ? new Date(startDate).toLocaleDateString("uk-UA")
+      : "";
+    const formattedEnd = endDate
+      ? new Date(endDate).toLocaleDateString("uk-UA")
+      : "";
 
     onAdd({
       id: crypto.randomUUID(),
       name: values.name,
       email: values.email,
-      bookingDateRange: { startDate: null, endDate: null },
+      bookingDateRange: values.bookingDateRange,
       comment: values.comment,
     });
-    toast.success(`Booking confirmed for ${values.name} on ${formattedDate}`);
+    toast.success(
+      endDate
+        ? `Booking confirmed from ${formattedStart} to ${formattedEnd}`
+        : `Booking confirmed on ${formattedStart}`
+    );
     actions.resetForm();
   };
 
@@ -40,9 +52,12 @@ const BookingForm = ({ onAdd }) => {
       .required("This field is required")
       .email("Invalid email"),
 
-    bookingDate: Yup.date()
-      .required("This field is required")
-      .typeError("Invalid date"),
+    bookingDateRange: Yup.object().shape({
+      startDate: Yup.date()
+        .required("Start date is required")
+        .typeError("Invalid start date"),
+      endDate: Yup.date().nullable().typeError("Invalid end date"),
+    }),
   });
 
   return (
@@ -96,23 +111,43 @@ const BookingForm = ({ onAdd }) => {
                         startDate={startDate ? new Date(startDate) : null}
                         endDate={endDate ? new Date(endDate) : null}
                         onChange={(dates) => {
-                          form.setFieldValue("bookingDateRange", {
-                            startDate: dates[0],
-                            endDate: dates[1],
-                          });
+                          if (!dates[1]) {
+                            form.setFieldValue("bookingDateRange", {
+                              startDate: dates[0],
+                              endDate: null,
+                            });
+                          } else {
+                            form.setFieldValue("bookingDateRange", {
+                              startDate: dates[0],
+                              endDate: dates[1],
+                            });
+                          }
                         }}
                         dateFormat="dd.MM.yyyy"
-                        placeholderText="Select date range"
                         className={`${css.field} ${css.inputDatePicker}`}
                         showPopperArrow={false}
                         minDate={new Date()}
+                        value={
+                          startDate
+                            ? endDate
+                              ? `${new Date(startDate).toLocaleDateString(
+                                  "uk-UA"
+                                )} – ${new Date(endDate).toLocaleDateString(
+                                  "uk-UA"
+                                )}`
+                              : `${new Date(startDate).toLocaleDateString(
+                                  "uk-UA"
+                                )}`
+                            : ""
+                        }
+                        customInput={<CustomDateInput />}
                       />
                     );
                   }}
                 </Field>
                 <ErrorMessage
                   className={css.error}
-                  name="bookingDate"
+                  name="bookingDateRange.startDate"
                   component="p"
                 />
               </div>
@@ -121,7 +156,7 @@ const BookingForm = ({ onAdd }) => {
                 as="textarea"
                 name="comment"
                 id="comment"
-                className={css.field}
+                className={`${css.field} ${css.textarea}`}
                 placeholder="Comment"
               ></Field>
             </div>

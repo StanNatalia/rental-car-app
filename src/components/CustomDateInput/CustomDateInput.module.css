@@ -1,0 +1,39 @@
+.field {
+  padding: 12px 20px;
+  width: 574px;
+  background-color: var(--main-inputs);
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+.placeholder {
+  color: var(--main-grey);
+}
+
+.filled {
+  color: var(--main-black);
+}
+
+@media (max-width: 900px) {
+  .field {
+    width: 434px;
+  }
+}
+
+@media (max-width: 730px) {
+  .field {
+    width: 334px;
+  }
+}
+
+@media (max-width: 530px) {
+  .field {
+    width: 284px;
+  }
+}
+
+@media (max-width: 400px) {
+  .field {
+    width: 284px;
+  }
+}

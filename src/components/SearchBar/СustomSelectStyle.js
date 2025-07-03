@@ -36,6 +36,27 @@ export const CustomSelectStyles = {
   menu: (base) => ({
     ...base,
     borderRadius: "10px",
+    padding: ".875rem .5rem .875rem 1.125rem",
     zIndex: 20,
+  }),
+  menuList: (base) => ({
+    ...base,
+    overflowY: "auto",
+    maxHeight: "10rem",
+    padding: 0,
+    "&::-webkit-scrollbar": {
+      display: "none",
+      width: "0",
+    },
+    scrollbarWidth: "none",
+    "&::-webkit-scrollbar-thumb": {
+      background: "#dadde1",
+      borderRadius: "4px",
+    },
+    "&::-webkit-scrollbar-button": {
+      height: "0px",
+      width: "0px",
+      background: "transparent",
+    },
   }),
 };
